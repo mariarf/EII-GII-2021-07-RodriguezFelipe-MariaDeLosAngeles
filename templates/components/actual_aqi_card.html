@@ -1,6 +1,6 @@
 {% macro render_card(actual_aqi, date) %}
     <h1><b>Predicciones de la calidad del aire en Manhattan</b></h1>
-    <div class="date-text"><i>Última actualización: {{date}} America/Nueva York</i></div>
+    <div class="date-text"><i>Última actualización: {{date}} América/Nueva York</i></div>
     <div class="card" style="background-color:{{actual_aqi[0][3]}}">
         <h2> Calidad del aire: <b>{{actual_aqi[0][2]}}</b></h2>
         <h3> AQI: <b>{{actual_aqi[0][1]}}</b></h3>
