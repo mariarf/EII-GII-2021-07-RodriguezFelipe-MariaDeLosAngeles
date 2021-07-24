@@ -34,7 +34,7 @@ El tercer apartado se explicará en este documento. A continuación, se explicar
 
 Para probar este tercer apartado es tan simple como ejecutar el método `main`. La primera vez se debe esperar durante cierto tiempo hasta que se carguen los datos necesarios para cargar la web y empezar a generar predicciones. En la memoria de este proyecto se encuentra detallado el funcionamiento de estos métodos.
 
-Posteriormente, para ejecutar la web se debe introducir en la terminal:
+Posteriormente, para ejecutar la web se debe introducir en la terminal, desde la carpeta en donde se encuentra el archivo `server.py`:
     `set FLASK_APP=server.py`
     `set FLAS_DEBUG=1`
     `flask run`
@@ -58,3 +58,6 @@ Si durante la recolección de los datos salta algún error, se debe a que se ha 
 Para solicitar una nueva Key debe hacerlo a través del enlace: https://rapidapi.com/visual-crossing-corporation-visual-crossing-corporation-default/api/visual-crossing-weather/
 
 Posteriormente, se tendrá que reemplazar las keys en el archivo `apis\api_weather.py` en las líneas 14 y 17.
+
+
+La carpeta donde se guarda el directorio debe tener por nombre `TFG`, debido a que se usa para establecer las rutas a los archivos.
