@@ -12,10 +12,10 @@ class ApiWeather:
 
          # la API key puede hacer 500 solicitudes por mes, en caso de necesitar más pedir key nueva en rapidApi
         if int(datetime[8:10]) < 15:
-            key = "c09f9fa598mshceb7aa13250cf5cp1ea7f8jsn3d2d7e62ea4c"
+            key = "734d8fc071msh3aec09695fe1d3cp1bc2c8jsn62efb25c06b7"
 
         else:
-            key= "578cfaf51fmsh044765a5410f8f8p1f93a8jsn397f746b6314" #"f3a0d7821amsh25b284a1d3ba54ap16a6aejsna64890d9bbfb"
+            key= "5bbbe8b746msh1b66cc8a070eee3p10e005jsn7996bb65c02c"
         
         url = "https://visual-crossing-weather.p.rapidapi.com/history"
         querystring = {"startDateTime":f"{datetime}","aggregateHours":"1","location":"Manhattan,NY,USA","unitGroup":"us","dayStartTime":"0:00:00","contentType":"csv","dayEndTime":"23:59:59","shortColumnNames":"0"}

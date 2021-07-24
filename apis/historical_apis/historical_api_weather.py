@@ -13,7 +13,7 @@ class HistoricalApiWeather:
 
         # la API key puede hacer 500 solicitudes por mes, en caso de necesitar más pedir key nueva en rapidApi
         headers = {
-            'x-rapidapi-key': "91fe12497fmshec2c60cb1d22778p1da8d8jsnd536d7b3c9b9",
+            'x-rapidapi-key': "b862ea302amsh4c53dbe75ac5afap1b2a23jsn226428f5574e",
             'x-rapidapi-host': "visual-crossing-weather.p.rapidapi.com"
             }
         response = requests.request("GET",url, headers=headers, params = querystring)  
