@@ -1,0 +1,63 @@
+{% macro render_chart(chart_data_0, chart_data_1, chart_data_2, chart_data_3, chart_id) %}
+    
+    <canvas id="{{chart_id}}" width="200" height="20"></canvas>
+ 
+    <script>
+    var str_ = {{chart_id}}.id
+    var ctx = document.getElementById(str_);
+
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{chart_data_0['datetime'].str[11:14].str.replace(':','h').to_numpy().tolist()|tojson}},
+            datasets: [
+                {
+                label: 'Error t1',
+                data:  {{chart_data_1['error'].dropna().to_numpy().tolist()}},
+                borderColor:'rgb(229, 94, 175)',
+                backgroundColor: 'rgb(229, 94, 175, 0.2)',
+                borderWidth: 4,
+                pointStyle: 'rectRot',
+                pointRadius: 4,
+                pointBorderWidth: 3
+                },
+                {
+                label: 'Error t2',
+                data:  {{chart_data_2['error'].dropna().to_numpy().tolist()}},
+                borderColor:'rgb(170, 229, 94)',
+                backgroundColor: 'rgb(170, 229, 94, 0.2)',
+                borderWidth: 3,
+                pointStyle: 'rectRot',
+                pointRadius: 4,
+                pointBorderWidth: 3
+                },
+                {
+                label: 'Error t3',
+                data:  {{chart_data_3['error'].dropna().to_numpy().tolist()}},
+                borderColor:'rgb(94, 229, 224)',
+                backgroundColor: 'rgb(94, 229, 224, 0.2)',
+                borderWidth: 2,
+                pointStyle: 'rectRot',
+                pointRadius: 4,
+                pointBorderWidth: 3
+                },
+            ]
+            
+        },
+        options: {
+            legend: {
+               display: true,
+            },
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        offsetGridLines: false
+                    }
+                }],
+            }
+        }
+       
+    });
+    </script>
+
+{% endmacro %}

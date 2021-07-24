@@ -1,0 +1,83 @@
+{% macro render_chart(chart_data_0, chart_data_1, chart_data_2, chart_data_3, chart_id) %}
+    <canvas id="{{chart_id}}" width="200" height="50"></canvas>
+    <script>
+    var str_ = {{chart_id}}.id
+    var ctx = document.getElementById(str_);
+
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels:  {{chart_data_0['datetime'].str[11:14].str.replace(':','h').to_numpy().tolist()|tojson}},
+            datasets: [
+                {
+                label: 'Predicción t1',
+                data: {{chart_data_1['predict_aqi'].to_numpy().tolist()}},
+                fill: false,
+                borderColor: 'rgb(229, 94, 175)',
+                backgroundColor: 'rgba(229, 94, 175, 0.2)',
+                borderWidth: 4,
+                pointStyle: 'crossRot',
+                pointRadius: 8,
+                pointBorderWidth: 5
+                },
+                {
+                label: 'Predicción t2',
+                data: {{chart_data_2['predict_aqi'].to_numpy().tolist()}},
+                fill: false,
+                borderColor: 'rgb(170, 229, 94)',
+                backgroundColor: 'rgba(170, 229, 94, 0.2)',
+                borderWidth: 3,
+                pointStyle: 'crossRot',
+                pointRadius: 7,
+                pointBorderWidth: 5
+                },
+                {
+                label: 'Predicción t3',
+                data: {{chart_data_3['predict_aqi'].to_numpy().tolist()}},
+                fill: false,
+                borderColor: 'rgb(94, 229, 224)',
+                backgroundColor: 'rgba(94, 229, 224, 0.2)',
+                borderWidth: 2,
+                pointStyle: 'crossRot',
+                pointRadius: 6,
+                pointBorderWidth: 5
+                },
+                {
+                label: 'Real',
+                data:  {{chart_data_0['real_aqi'].dropna().to_numpy().tolist()}},
+                fill: false,
+                borderColor: 'rgb(40, 116, 166, 1)',
+                backgroundColor: 'rgba(40, 116, 166, 1)',
+                borderWidth: 5,
+                //pointBorderColor: 'rgb(40, 180, 99)',
+                pointRadius: 5,
+                pointBackgroundColor: 'rgb(40, 116, 166, 1)',
+                pointBorderWidth: 5
+                },
+            ]
+        },
+        options: {
+            legend: { display: true},
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            },
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        offsetGridLines: false
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        min: 0
+                    }
+                }]
+            }
+        },
+        
+       
+    });
+    </script>
+
+{% endmacro %}

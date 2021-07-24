@@ -1,0 +1,43 @@
+{% macro render_chart(chart_data, chart_id, label_str) %}
+    
+    <canvas id="{{chart_id}}" width="200" height="20"></canvas>
+ 
+    <script>
+    var str_ = {{chart_id}}.id
+    var ctx = document.getElementById(str_);
+
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{chart_data['datetime'].str[11:14].str.replace(':','h').to_numpy().tolist()|tojson}},
+            datasets: [
+                {
+                label: 'Error',
+                data:  {{chart_data['error'].dropna().to_numpy().tolist()}},
+                borderDash: [3, 3],
+                borderColor:'rgb(155, 89, 182 )',
+                backgroundColor: 'rgb(155, 89, 182, 0.2)',
+                borderWidth: 3,
+                pointStyle: 'rectRot',
+                pointRadius: 4,
+                pointBorderWidth: 2,
+                }
+            ]
+        },
+        options: {
+            legend: {
+               display: true,
+            },
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        offsetGridLines: false
+                    }
+                }],
+            }
+        }
+       
+    });
+    </script>
+
+{% endmacro %}

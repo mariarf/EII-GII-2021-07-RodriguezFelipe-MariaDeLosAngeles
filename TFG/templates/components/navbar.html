@@ -1,0 +1,17 @@
+<nav class="navbar navbar-light fixed " role="navigation">
+  <div class="container-fluid">
+
+        <a class="navbar-brand" href="{{ url_for('index') }}">Inicio</a> 
+        <a class="nav navbar-brand" >|</a>
+        <a class="nav navbar-brand" href="{{ url_for('table_view') }}">Tabla de valores</a>
+    
+        <a class="nav navbar-brand" >|</a>
+        <a class="nav navbar-brand" href="{{ url_for('statistic_data') }}">Estadísticas</a>
+    
+        <a class="nav navbar-brand nav-git" href="#" >
+             <img src="{{ url_for('static', filename='images/github-logo-100.png') }}"
+                     style="max-width: 42px"
+                     alt="Github">
+       </a>
+  </div>
+</nav>

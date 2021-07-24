@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% import 'components/actual_aqi_card.html' as actual_aqi_card %}
+{% import 'components/table_total.html' as tabla %}
+
+{% block head %}
+    {{ super() }}
+    <meta http-equiv="refresh" content="60" >
+{% endblock%}
+
+{% block title %}
+    {{ super() }}
+    Tabla de valores
+{% endblock %}
+
+{% block content %}   
+    {{ actual_aqi_card.render_card(actual_aqi, date)}}
+    {{ tabla.render_table(predictions)}}
+{% endblock %}

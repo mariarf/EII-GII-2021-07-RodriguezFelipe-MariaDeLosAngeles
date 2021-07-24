@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% import 'charts/line_chart.html' as line_chart %}
+{% import 'charts/multi_line_chart.html' as multi_line_chart %}
+{% import 'charts/multi_bar_chart_2.html' as multi_bar_chart %}
+{% import 'charts/bar_chart.html' as bar_chart %}
+{% import 'charts/bar_chart_2.html' as bar_chart_2 %}
+{% import 'components/actual_aqi_card.html' as actual_aqi_card %}
+{% import 'charts/error_chart.html' as error_chart %}
+{% import 'charts/multi_error_chart.html' as multi_error_chart %}
+
+{% block title %}
+    {{ super() }}
+    Estadísticas
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    
+{% endblock %}
+
+{% block content %}   
+
+    {{ actual_aqi_card.render_card(actual_aqi, date)}}
+
+    <div role="tabpanel">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation"><a href="#predict_t0" aria-controls="predict_t0" role="tab" data-toggle="tab">Últimas predicciones registradas</a></li>
+            <li role="presentation"><a href="#predict_t1" aria-controls="predict_t1" role="tab" data-toggle="tab">Predicciones a un paso</a></li>
+            <li role="presentation"><a href="#predict_t2" aria-controls="predict_t2" role="tab" data-toggle="tab">Predicciones a dos pasos</a></li>
+            <li role="presentation"><a href="#predict_t3" aria-controls="predict_t3" role="tab" data-toggle="tab">Predicciones a tres pasos</a></li>
+            <li role="presentation"><a href="#predict_" aria-controls="predict_" role="tab" data-toggle="tab">Comparación todos los pasos</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="predict_t0">
+                {{ line_chart.render_chart(pred_t0, 'chart_line_546', 3) }}
+                {{ error_chart.render_chart(pred_t0,"error_st_877") }}
+                {{ bar_chart_2.render_chart(pred_t0, "chart_st_758") }}
+              
+            </div>
+            <div role="tabpanel" class="tab-pane fade in " id="predict_t1">
+               
+                {{ line_chart.render_chart(pred_t1, 'chart_line_845', 1) }}
+                {{ error_chart.render_chart(pred_t1,"error_st_897") }}
+                {{ bar_chart_2.render_chart(pred_t1, "chart_st_558") }}
+               
+            </div>
+            <div role="tabpanel" class="tab-pane fade in " id="predict_t2">
+                {{ line_chart.render_chart(pred_t2, 'chart_line_746', 2) }}
+                {{ error_chart.render_chart(pred_t2,"error_st_817") }}
+                {{ bar_chart_2.render_chart(pred_t2, "chart_st_658") }}
+               
+            </div> 
+            <div role="tabpanel" class="tab-pane fade in " id="predict_t3">
+                {{ line_chart.render_chart(pred_t3, 'chart_line_766', 3) }}
+                {{ error_chart.render_chart(pred_t3,"error_st_197") }}
+                {{ bar_chart_2.render_chart(pred_t3, "chart_st_878") }}
+             
+            </div>
+             <div role="tabpanel" class="tab-pane fade in " id="predict_">
+                {{multi_line_chart.render_chart(pred_t0, pred_t1, pred_t2, pred_t3, 'chart_multi_line_766')}}
+                {{multi_error_chart.render_chart(pred_t0, pred_t1, pred_t2, pred_t3, 'chart_multi_error_489')}}
+                {{multi_bar_chart.render_chart(pred_t0, pred_t1, pred_t2, pred_t3, 'chart_multi_bar_419')}}
+            </div>
+
+        </div>
+    </div>
+    <hr />
+     <div class="card-2">
+                    <p> 
+                    Nota:</p>
+                    <p> En la pestaña de "Últimas predicciones registradas" se muestra la última predicción 
+                    generada por el modelo para cada hora.</p>
+                    <p>En las siguientes pestañas se muestran las predicciones generadas por el modelo a un paso de tiempo, 
+                    dos pasos de tiempo, tres pasos de tiempo y en todos los pasos de tiempo. 
+                    Estas gráficas muestran las predicciones que hace el modelo dadas 12 horas históricas
+                     para la siguiente hora (un paso de tiempo), las siguientes 2 horas (dos pasos de tiempo),
+                    las siguientes 3 horas (tres pasos de tiempo) y en los tres pasos de tiempo durante las últimas 24 horas. </p>
+                    <p>Esto servirá para evaluar qué tan bien genera 
+                    las predicciones el modelo para cada paso de tiempo. Es más probable que el modelo haga una mejor predicción 
+                    para la hora siguiente a partir de la que se hacen las predicciones que pasadas tres horas. </p>
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% macro render_chart(chart_data, chart_id) %}
+    <canvas id="{{chart_id}}" width="200" height="75"></canvas>
+    <script>
+    console.log({{chart_id}})
+    var str_ = {{chart_id}}.id
+
+  
+    var ctx = document.getElementById(str_);
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{chart_data['datetime'].str[11:14].str.replace(':','h').to_numpy().tolist()|tojson}},
+            datasets: [
+                {
+                label: "Predicciones",
+                data: {{chart_data['predict_aqi'].to_numpy().tolist()}},
+                borderColor: {{chart_data['predict_color'].to_numpy().tolist()|tojson}},
+                backgroundColor: {{chart_data['predict_bg_color'].to_numpy().tolist()|tojson}},
+                borderWidth: 2,
+                borderSkipped: false,
+                },
+                {
+                label: "Real",
+                data: {{chart_data['real_aqi'].dropna().to_numpy().tolist()}},
+                borderColor: {{chart_data['real_color'].to_numpy().tolist()|tojson}},
+                backgroundColor: {{chart_data['real_bg_color'].to_numpy().tolist()|tojson}},
+                borderWidth: 2,
+                borderSkipped: false,
+                }
+            ]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        offsetGridLines: true
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        min: 0
+                    }
+                }]
+            }
+        }
+       
+    });
+    </script>
+
+{% endmacro %}

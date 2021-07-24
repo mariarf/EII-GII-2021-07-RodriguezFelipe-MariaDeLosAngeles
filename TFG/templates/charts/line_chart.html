@@ -1,0 +1,72 @@
+{% macro render_chart( chart_data, chart_id, num) %}
+    <canvas id="{{chart_id}}" width="200" height="50"></canvas>
+    {{hola}}
+
+
+
+    <script>
+
+
+    var str_ = {{chart_id}}.id
+    var ctx = document.getElementById(str_);
+    var x = null
+
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels:  {{chart_data['datetime'].str[11:14].str.replace(':','h').to_numpy().tolist()|tojson}},
+            datasets: [
+                {
+                label: 'Prediction',
+                data: {{chart_data['predict_aqi'].dropna().to_numpy().tolist()}},
+                fill: false,
+                borderDash: [5, 5],
+                borderColor: 'rgba(250, 102, 26, 1)',
+                backgroundColor: 'rgba(250, 102, 26, 0.2)',
+                borderWidth: 3,
+                pointStyle: 'crossRot',
+                pointRadius: 8,
+                //pointBorderColor: 'rgb(235, 24, 7)',
+                pointBorderWidth: 5
+                },
+                {
+                label: 'Real',
+                data:  {{chart_data['real_aqi'].dropna().to_numpy().tolist()}},
+                fill: false,
+                borderColor: 'rgba(40, 116, 166, 1)',
+                backgroundColor: 'rgba(40, 116, 166, 1)',
+                borderWidth: 3,
+                //pointBorderColor: 'rgb(40, 180, 99)',
+                pointRadius: 5,
+                pointBackgroundColor: 'rgba(40, 116, 166, 1)',
+                pointBorderWidth: 5
+                }
+                
+            ]
+        },
+        options: {
+            legend: { display: true},
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            },
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        offsetGridLines: false
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        min: 0
+                    }
+                }]
+            }
+
+        },
+        
+       
+    });
+    </script>
+
+{% endmacro %}

@@ -1,0 +1,66 @@
+{% macro render_chart(chart_data_0, chart_data_1, chart_data_2, chart_data_3, chart_id) %}
+    <canvas id="{{chart_id}}" width="200" height="75"></canvas>
+    <script>
+    console.log({{chart_id}})
+    var str_ = {{chart_id}}.id
+
+  
+    var ctx = document.getElementById(str_);
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{chart_data_0['datetime'].str[11:14].str.replace(':','h').to_numpy().tolist()|tojson}},
+            datasets: [
+                {
+                label: "Predicciones t1",
+                data: {{chart_data_1['predict_aqi'].to_numpy().tolist()}},
+                borderColor: {{chart_data_1['predict_color'].to_numpy().tolist()|tojson}},
+                backgroundColor: {{chart_data_1['predict_bg_color'].to_numpy().tolist()|tojson}},
+                borderWidth: 3,
+                borderSkipped: false,
+                },
+                {
+                label: "Predicciones t2",
+                data: {{chart_data_2['predict_aqi'].to_numpy().tolist()}},
+                borderColor: {{chart_data_2['predict_color'].to_numpy().tolist()|tojson}},
+                backgroundColor: {{chart_data_2['predict_bg_color'].to_numpy().tolist()|tojson}},
+                borderWidth: 2,
+                borderSkipped: false,
+                },
+                {
+                label: "Predicciones t3",
+                data: {{chart_data_3['predict_aqi'].to_numpy().tolist()}},
+                borderColor: {{chart_data_3['predict_color'].to_numpy().tolist()|tojson}},
+                backgroundColor: {{chart_data_3['predict_bg_color'].to_numpy().tolist()|tojson}},
+                borderWidth: 1,
+                borderSkipped: false,
+                },
+                {
+                label: "Real",
+                data: {{chart_data_0['real_aqi'].dropna().to_numpy().tolist()}},
+                borderColor: {{chart_data_0['real_color'].to_numpy().tolist()|tojson}},
+                backgroundColor: {{chart_data_0['real_bg_color'].to_numpy().tolist()|tojson}},
+                borderWidth: 2,
+                borderSkipped: false,
+                }
+            ]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        offsetGridLines: true
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        min: 0
+                    }
+                }]
+            }
+        }
+       
+    });
+    </script>
+
+{% endmacro %}

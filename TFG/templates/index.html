@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% import 'charts/bar_chart.html' as bar_chart %}
+{% import 'charts/error_chart.html' as error_chart %}
+{% import 'components/aqi_description.html' as aqi %}
+{% import 'components/actual_aqi_card.html' as actual_aqi_card %}
+
+{% block head %}
+    {{ super() }}
+    <meta http-equiv="refresh" content="60" >
+{% endblock%}
+
+{% block title %}
+    {{ super() }}
+   
+    Inicio
+{% endblock %}
+
+{% block content %}   
+    {{ actual_aqi_card.render_card(actual_aqi, date)}}
+    {{ bar_chart.render_chart(predictions,"Predictions_index","Predicciones","predict") }}
+    {{ bar_chart.render_chart(predictions,"Real_index","Valores reales registrados","real") }}
+    <h3 style="text-align: center;"> Error de las predicciones</h3>
+    {{ error_chart.render_chart(predictions,"error_index_487") }}
+    {{ aqi.render_table()}} 
+{% endblock %}

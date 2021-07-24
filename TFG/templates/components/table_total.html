@@ -1,0 +1,28 @@
+{% macro render_table(predictions) %}
+
+<div class="table-responsive">
+    <table class="table table_1 table-sm table-borderless mb-0">   
+        <thead>
+            <tr>
+                <th scope="col">Fecha y hora</th>
+                <th scope="col">AQI: Predicción</th>
+                <th scope="col">Categoría: Predicción</th>
+                <th scope="col">AQI: Real</th>
+                <th scope="col">Categoría: Real</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key,value in predictions.iterrows() %}
+            <tr>
+                <td style="background-color:"><i>{{ value['datetime'] }}</i></td>
+                <td class ="border_left text_category" style="background-color:{{ value['predict_color'] }}">{{ value['predict_aqi'] }} - </td>
+                <td class ="border_right text_category" style="background-color:{{ value['predict_color'] }}">{{ value['predict_category'] }}</td>
+                <td class="border_left text_category" style="background-color:{{ value['real_color'] }}">{{ value['real_aqi'] }} - </td>
+                <td class ="border_right text_category" style="background-color:{{ value['real_color'] }}">{{ value['real_category'] }}</td>
+            </tr>       
+            {%endfor%}
+        </tbody>
+    </table>
+</div>
+
+{% endmacro %}

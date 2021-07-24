@@ -1,0 +1,46 @@
+{% macro render_chart(chart_data, chart_id, chart_str, label_str) %}
+    <h2 style="text-align: center;"> {{chart_str}} para las últimas horas</h2>
+    <canvas id="{{chart_id}}" width="200" height="50"></canvas>
+ 
+    <script>
+    var str_ = {{chart_id}}.id
+    var ctx = document.getElementById(str_);
+
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{chart_data['datetime'].str[11:14].str.replace(':','h').to_numpy().tolist()|tojson}},
+            datasets: [
+                {
+                data: {{chart_data[label_str + '_aqi'].dropna().to_numpy().tolist()}},
+                borderColor: {{chart_data[label_str + '_color'].to_numpy().tolist()|tojson}},
+                backgroundColor: {{chart_data[label_str + '_bg_color'].to_numpy().tolist()|tojson}},
+                borderWidth: 2,
+                borderSkipped: false,
+                }
+            ]
+        },
+        options: {
+            legend: {
+               display: false,
+            
+            },
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        offsetGridLines: true
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        min: 0
+                    }
+                    
+                }]
+            }
+        }
+       
+    });
+    </script>
+
+{% endmacro %}

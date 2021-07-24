@@ -1,0 +1,121 @@
+html * {
+    font-family: sans-serif;
+}
+
+body{
+    background-image:url('../images/fondos/fondo3.jpg');
+    position: relative;
+
+}
+
+/* Navbar */
+.fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    background-color:white;
+  }
+.nav-git{
+    float: right;
+}
+
+
+/* Body */
+.container{
+    background-color: rgb(242, 243, 244, 0.7);
+    width: 90%;
+    margin-top: 65px;
+    margin-bottom: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 10px;
+}
+.card{
+    border-radius: 10px;
+    padding: 2px 2px 10px 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: white;
+    font-weight: bold;
+}
+.card-2{
+    border-radius: 10px;
+    padding: 2px 2px 10px 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: justify;
+}
+
+.date-text{
+    text-align: right;
+ 
+ }
+
+/* Tables*/
+
+.aqi_desc_table{
+    color:white;
+    font-weight: bold;
+}
+
+.text_category{
+    color:rgba(255, 255, 255, 0.822);
+    font-size: 150%;
+    font-weight: bold;
+}
+.table_1{
+    margin-top: 10px;
+    background: white;
+}
+
+.border_left {
+    border-bottom: solid rgb(255, 255, 255) 2px;
+    border-left: solid rgb(255, 255, 255) 2px;
+    border-bottom-left-radius: 60px;
+    border-top-left-radius: 60px;
+    text-align: right;
+}
+
+.border_right {
+    border-bottom: solid rgb(255, 255, 255) 2px;
+    border-bottom-right-radius: 60px ;
+    border-top-right-radius: 60px;
+}
+
+/* Footer*/
+
+.container-footer{
+    background-color: rgb(242, 243, 244, 0.7);
+    text-align: center;
+
+    padding: 15px 15px 15px;
+    margin-top: 20px;
+    margin-bottom: -250px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.preloader {
+    width: 70px;
+    height: 70px;
+    border: 10px solid #eee;
+    border-top: 10px solid rgb(87, 201, 216);
+    border-radius: 50%;
+    animation-name: girar;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    margin: 0 auto;
+
+  }
+  @keyframes girar {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }

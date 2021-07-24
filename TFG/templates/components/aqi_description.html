@@ -1,0 +1,53 @@
+{% macro render_table() %}
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-sm table-borderless mb-0">   
+            <thead>
+                <tr>
+                    <th scope="col">AQI</th>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">Descripción</th>
+                </tr>
+            </thead>
+            <tbody  class="aqi_desc_table">
+                <tr style="background:rgb(168, 224, 95);">
+                    <td>0-50</td>
+                    <td>Buena</td>
+                    <td>Dentro de este intervalo no se anticipan impactos a la salud.</td>
+                </tr>  
+                <tr style="background:rgb(253,215,77);">
+                    <td>51-100</td>
+                    <td>Moderada</td>
+                    <td>Personas extremadamente sensitivas deben considerar limitar los esfuerzos físicos excesivos y prolongados al aire libre.</td>
+                </tr>    
+                <tr style="background:rgb(254,156,89);">
+                    <td>101-150</td>
+                    <td>Dañina a la Salud de los Grupos Sensibles</td>
+                    <td>Personas con enfermedades respiratorias, deben limitar el esfuerzo prolongado al aire libre.</td>
+                </tr>   
+                <tr style="background:rgb(254,108,107);">
+                    <td>151-200</td>
+                    <td>Dañina a la Salud</td>
+                    <td>Personas con enfermedades respiratorias, deben evitar el esfuerzo prolongado al aire libre.
+                     El resto de las personas, en especial los niños, deben limitar el esfuerzo prolongado al aire libre.</td>
+                </tr> 
+                <tr style="background:rgb(118, 44, 168);">
+                    <td>201-300</td>
+                    <td>Muy Dañina a la Salud</td>
+                    <td>Altas probabilidades de que toda la población se vea afectada.
+                    Personas con enfermedades respiratorias, deben evitar el esfuerzo prolongado al aire libre. 
+                    El resto de las personas, en especial los niños, deben limitar el esfuerzo prolongado al aire libre.
+                    </td>
+                </tr> 
+                <tr style="background:rgb(129, 43, 31);">
+                    <td>+300</td>
+                    <td>Arriesgado</td>
+                    <td>Todas las personas deben evitar todo esfuerzo al aire libre.</td>
+                </tr> 
+       
+            </tbody>
+        </table>
+    </div>
+ 
+</div>
+{% endmacro %}
