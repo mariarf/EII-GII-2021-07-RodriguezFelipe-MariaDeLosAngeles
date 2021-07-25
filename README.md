@@ -9,10 +9,10 @@ Este repositorio está dividido en tres partes principales que funcionan de form
     3. Desarrollo de página web
 
 Para el primer apartado, navegar hasta la carpeta `apis/historical_apis`. Dentro de esa carpeta
-encontrá un documento REEDME.md que le indicará el funcionamiento de este apartado.
+encontrá un documento README.md que le indicará el funcionamiento de este apartado.
 
 Para el segundo apartado, navegar hasta la carpeta `models/models_analysis`. Dentro de esa carpeta
-encontrá un documento REEDME.md que le indicará el funcionamiento de este apartado.
+encontrá un documento README.md que le indicará el funcionamiento de este apartado.
 
 El tercer apartado se explicará en este documento. A continuación, se explicarán los archivos tipo .py que se encuentran en la raíz del directorio:
     
