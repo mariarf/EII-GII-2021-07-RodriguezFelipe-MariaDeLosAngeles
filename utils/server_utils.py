@@ -43,18 +43,9 @@ class ServerUtils:
         pred = pred.rename(columns={f'predict_aqi_t{t}': "predict_aqi", f'predict_category_t{t}': 'predict_category', f'predict_color_t{t}': 'predict_color'}) 
         
         pred['error'] = ''
-        pred['predict_bg_color'] = ''
+        pred['predict_bg_color'] = pred['predict_color']
         pred['real_bg_color'] = pred['real_color'].str.replace(')', ",0.2)")
-
-        if t <=1 and predictions.shape[0] > 12:
-            pred['error'] = pred[f'predict_aqi'] - pred[f'real_aqi']
-            pred['predict_bg_color'] = pred['predict_color'].str.replace(')', ",0.8)")
-        elif t==2 and predictions.shape[0] > 13:
-            pred['error'] = pred[f'predict_aqi'] - pred[f'real_aqi']
-            pred['predict_bg_color'] = pred['predict_color'].str.replace(')', ",0.8)")
-        elif t==3 and predictions.shape[0] > 14:
-            pred['error'] = pred[f'predict_aqi'] - pred[f'real_aqi']
-            pred['predict_bg_color'] = pred['predict_color'].str.replace(')', ",0.8)")
+        pred['error'] = pred[f'predict_aqi'] - pred[f'real_aqi']
 
         pred[:-3]=pred[:-3].fillna(method="bfill")
 
