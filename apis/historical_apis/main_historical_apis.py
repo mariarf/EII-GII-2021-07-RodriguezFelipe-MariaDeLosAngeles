@@ -9,7 +9,7 @@ from datetime import datetime as dt
 # a partir de la fecha de inicio durante el número de meses que se le indica
 ###### La fecha de inicio debe ser mes y año yyyy-mm.
 def apis_request(start_date, months, directory):
-    start_date = start_date + "01T00:00:00"
+    start_date = start_date + "-01T00:00:00"
 
     start_datetime = datetime.datetime.strptime(start_date,"%Y-%m-%dT%H:%M:%S")
     end_datetime = start_datetime + datetime.timedelta(days=14, hours= 23, seconds=3599)
@@ -112,4 +112,5 @@ def merge_files_with_location(location, output_name):
     output_csv =  location + output_name
     df.to_csv(output_csv, index=False)
 
+apis_request("2021-01", 2, "file_name")
 #apis_request("yyyy-mm", number_of_month, "file_name")
