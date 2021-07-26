@@ -112,5 +112,4 @@ def merge_files_with_location(location, output_name):
     output_csv =  location + output_name
     df.to_csv(output_csv, index=False)
 
-apis_request("2021-01", 2, "file_name")
 #apis_request("yyyy-mm", number_of_month, "file_name")
